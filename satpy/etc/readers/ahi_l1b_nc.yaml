@@ -1,0 +1,338 @@
+# References:
+#   - https://www.eorc.jaxa.jp/ptree/userguide.html
+#   Example file types:
+#       Japan area 1 km resolution:
+#           'NC_H08_20200814_0000_r14_FLDK.02701_02601.nc'
+#       Full disk 5 km resolution
+#           'NC_H08_20200814_0000_R21_FLDK.02401_02401.nc'
+#       Full disk 2 km resolution
+#           'NC_H08_20200814_0000_R21_FLDK.06001_06001.nc'
+
+reader:
+  name: ahi_l1b_nc
+  short_name: AHI L1b NetCDF4
+  long_name: Himawari AHI Level 1b (NetCDF4)
+  description: NetCDF4 reader for JMA Himawari AHI Level 1b files
+  sensors: [ahi]
+  reader: !!python/name:satpy.readers.yaml_reader.FileYAMLReader
+
+file_types:
+  nc_ahi_l1b:
+    file_reader: !!python/name:satpy.readers.ahi_l1b_nc.NCAHIFileHandler
+    file_patterns: ['NC_{platform_shortname}_{start_time:%Y%m%d_%H%M}_R21_FLDK.{pixel_number:5d}_{line_number:5d}.nc',
+                    'NC_{platform_shortname}_{start_time:%Y%m%d_%H%M}_r14_FLDK.{pixel_number:5d}_{line_number:5d}.nc']
+
+datasets:
+  latitude:
+    name: latitude
+    standard_name: latitude
+    units: "degrees_north"
+    file_type: nc_ahi_l1b
+
+  longitude:
+    name: longitude
+    standard_name: longitude
+    units: "degrees_east"
+    file_type: nc_ahi_l1b
+
+  B01:
+    name: B01
+    sensor: ahi
+    wavelength: [0.45,0.47,0.49]
+    resolution: 2000
+    calibration:
+      reflectance:
+        standard_name: toa_bidirectional_reflectance
+        units: "%"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    modifiers: [sunz_corrected]
+    file_type: nc_ahi_l1b
+
+  B02:
+    name: B02
+    sensor: ahi
+    wavelength: [0.49,0.51,0.53]
+    resolution: 2000
+    calibration:
+      reflectance:
+        standard_name: toa_bidirectional_reflectance
+        units: "%"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    modifiers: [sunz_corrected]
+    file_type: nc_ahi_l1b
+
+  B03:
+    name: B03
+    sensor: ahi
+    wavelength: [0.62,0.64,0.66]
+    resolution: 2000
+    calibration:
+      reflectance:
+        standard_name: toa_bidirectional_reflectance
+        units: "%"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    modifiers: [sunz_corrected]
+    file_type: nc_ahi_l1b
+
+  B04:
+    name: B04
+    sensor: ahi
+    wavelength: [0.83, 0.85, 0.87]
+    resolution: 2000
+    calibration:
+      reflectance:
+        standard_name: toa_bidirectional_reflectance
+        units: "%"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    modifiers: [sunz_corrected]
+    file_type: nc_ahi_l1b
+
+  B05:
+    name: B05
+    sensor: ahi
+    wavelength: [1.5, 1.6, 1.7]
+    resolution: 2000
+    calibration:
+      reflectance:
+        standard_name: toa_bidirectional_reflectance
+        units: "%"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    modifiers: [sunz_corrected]
+    file_type: nc_ahi_l1b
+
+  B06:
+    name: B06
+    sensor: ahi
+    wavelength: [2.2, 2.3, 2.4]
+    resolution: 2000
+    calibration:
+      reflectance:
+        standard_name: toa_bidirectional_reflectance
+        units: "%"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    modifiers: [sunz_corrected]
+    file_type: nc_ahi_l1b
+
+  B07:
+    name: B07
+    sensor: ahi
+    wavelength: [3.7, 3.9, 4.1]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B08:
+    name: B08
+    sensor: ahi
+    wavelength: [6.0, 6.2, 6.4]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B09:
+    name: B09
+    sensor: ahi
+    wavelength: [6.7, 6.9, 7.1]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B10:
+    name: B10
+    sensor: ahi
+    wavelength: [7.1, 7.3, 7.5]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B11:
+    name: B11
+    sensor: ahi
+    wavelength: [8.4, 8.6, 8.8]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B12:
+    name: B12
+    sensor: ahi
+    wavelength: [9.4, 9.6, 9.8]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B13:
+    name: B13
+    sensor: ahi
+    wavelength: [10.2, 10.4, 10.6]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B14:
+    name: B14
+    sensor: ahi
+    wavelength: [11.0, 11.2, 11.4]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B15:
+    name: B15
+    sensor: ahi
+    wavelength: [12.2, 12.4, 12.6]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  B16:
+    name: B16
+    sensor: ahi
+    wavelength: [13.1, 13.3, 13.5]
+    resolution: 2000
+    calibration:
+      brightness_temperature:
+        standard_name: toa_brightness_temperature
+        units: "K"
+      radiance:
+        standard_name: toa_outgoing_radiance_per_unit_wavelength
+        units: W m-2 um-1 sr-1
+      counts:
+        standard_name: counts
+        units: 1
+    file_type: nc_ahi_l1b
+
+  SAZ:
+    name: SAZ
+    standard_name: satellite_zenith_angle
+    units: "degrees"
+    file_type: nc_ahi_l1b
+
+  SAA:
+    name: SAA
+    standard_name: satellite_azimuth_angle
+    units: "degrees"
+    file_type: nc_ahi_l1b
+
+  SOZ:
+    name: SOZ
+    standard_name: solar_zenith_angle
+    units: "degrees"
+    file_type: nc_ahi_l1b
+
+  SOA:
+    name: SOA
+    standard_name: solar_azimuth_angle
+    units: "degrees"
+    file_type: nc_ahi_l1b

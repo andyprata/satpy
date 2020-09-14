@@ -1,3 +1,17 @@
+ambae:
+  description: ambae
+  projection:
+    proj: merc
+    lat_0: -16.5
+    lon_0: 172.5
+    ellps: WGS84
+  shape:
+    height: 404
+    width: 835
+  area_extent:
+    lower_left_xy: [-834896.1809495536, -2258423.649096379]
+    upper_right_xy: [834896.1809495508, -1450126.300596939]
+
 omerc_bb:
   description: Oblique Mercator Bounding Box for Polar Overpasses
   projection:
